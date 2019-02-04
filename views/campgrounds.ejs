@@ -1,0 +1,13 @@
+<% include partials/header %>
+
+    <h1>Welcome to BelpCamp</h1>
+    <button><a href="new">Add new Campground</a></button>
+    <% campgrounds.forEach(campground => { %>
+        <h2><%= campground.name %></h2>
+        <img src="<%= campground.image %>" alt="image">
+        <p><%= campground.description %></p>
+    <% })%>
+    <a href="landing"></a>
+
+
+<% include partials/footer %>
