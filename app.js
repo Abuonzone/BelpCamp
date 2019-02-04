@@ -16,4 +16,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(indexRouter);
 
-app
+app.listen(port, hostname).then(()=>{
+    console.log(`Server listening at https://${hostname}:${port}`);
+});
