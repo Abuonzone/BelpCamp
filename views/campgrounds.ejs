@@ -1,14 +1,19 @@
 <% include partials/header %>
-
-    <h1>Welcome to BelpCamp</h1>
-    <button><a href="campgrounds/new">Add new Campground</a></button>
+    <div class="jumbotron bg-transparent">
+        <h1 class="display-4">Welcome to BelpCamp!</h1>
+        <a class="btn btn-primary" href="/campgrounds/new" role="button">New Campground</a>
+    </div>
+    <div class="card-columns">
     <% campgrounds.forEach(campground => { %>
-        <h2><%= campground.name %></h2>
-        <img src="<%= campground.image %>" alt="image">
-        <p><%= campground.description %></p>
-        <a href="campground/<%= campground._id %>">Show campground</a>
-    <% })%>
-    <a href="/">Homepage</a>
-
-
+    <div class="card">
+        <img src="<%= campground.image %>" class="card-img-top" alt="">
+        <div class="card-body text-center">
+            <h5 class="card-title"><%= campground.name %></h5>
+            <p class="card-text"><%= campground.description %></p>
+            <a href="campground/<%= campground._id %>" class="btn btn-primary">view</a>
+        </div>
+    </div>
+    <% }) %>
+    </div>
+    
 <% include partials/footer %>

@@ -1,13 +1,45 @@
 <% include ../partials/header %>
 
-   <div>
-        <h1>Welcome to <%= campground.name %></h1>
-        <img src="<%= campground.image %>" alt="">
-        <p><%= campground.description %></p>
-        <a href="/campground/<%= campground._id %>/edit">Edit Campground</a>
-        <form action="/campground/<%= campground._id %>?_method=DELETE" method="POST">
-            <button><a>Delete Campground</a></button>
+<div class="row col-12">
+<div class="col-md-4">
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+</div>
+</div>
+<div class="col-md-8">
+    <div class="card" style="width:100%;">
+        <div class="card-header">
+            <h1><%= campground.name %></h1>
+        </div>
+        <div class="card-body">
+            <img src="<%= campground.image %>" class="card-img-top img-thumbail">
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+</div>
+</div>
+
+    <div class="col s12 m7">
+      <div class="card">
+      <div class="card-title"></div>
+        <div class="card-image">
+          <img src="<%= campground.image %>">
+        </div>
+        <div class="card-content">
+          <p><%= campground.description %></p>
+        </div>
+        <div class="card-action">
+          <a href="/campground/<%= campground._id %>/edit">Edit</a>
+          <form action="/campground/<%= campground._id %>?_method=DELETE" method="POST">
+            <a>Delete Campground</a>
         </form>
-   </div>
-    <a href="/campgrounds">Go Back</a>
+        </div>
+      </div>
+    </div>
+       <a href="/campgrounds">Go Back</a>
 <% include ../partials/footer %>
