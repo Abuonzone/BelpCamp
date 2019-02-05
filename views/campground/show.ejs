@@ -1,0 +1,13 @@
+<% include ../partials/header %>
+
+   <div>
+        <h1>Welcome to <%= campground.name %></h1>
+        <img src="<%= campground.image %>" alt="">
+        <p><%= campground.description %></p>
+        <a href="/campground/<%= campground._id %>/edit">Edit Campground</a>
+        <form action="/campground/<%= campground._id %>?_method=DELETE" method="POST">
+            <button><a>Delete Campground</a></button>
+        </form>
+   </div>
+    <a href="/campgrounds">Go Back</a>
+<% include ../partials/footer %>

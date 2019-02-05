@@ -1,0 +1,10 @@
+<% include ../partials/header %>
+
+    <form action="/campground/<%= camp._id%>?_method=PUT" method="POST">
+        <input type="text" name="campground[name]" value="<%= camp.name %>">
+        <input type="text" name="campground[image]" value="<%= camp.image %>">
+        <input type="text" name="campground[description]" value="<%= camp.description %>">
+        <button>Submit</button>
+    </form>
+
+<% include ../partials/footer %>
