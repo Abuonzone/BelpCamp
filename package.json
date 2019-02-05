@@ -12,10 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "bson": "^4.0.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "method-override": "^3.0.0",
-    "mongoose": "^4.7.2"
+    "mongoose": "^5.4.9"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
