@@ -9,7 +9,9 @@ import bodyParser from "body-parser";
 import methodOverride from "method-override";
 import indexRouter from "./routes/index"
 import campgroundRouter from "./routes/campground";
-import usersRouter from "./routes/users";
+import usersRouter from "./routes/users1";
+import passport from "passport";
+import authenticate from "./authenticate";
 //import Seed from "./seeds";
 
 mongoose.connect("mongodb://localhost/belpcamp", {useNewUrlParser: true}, ()=>{
@@ -32,28 +34,22 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     store: new FileStore()
-}))
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(indexRouter);
 app.use('/users', usersRouter);
 
 function auth(req,res,next){
-    console.log(req.session);
-    if(!req.session.user){
+    if(!req.user){
             let err = new Error('You are not authenticated');
-            err.status = 401;
+            err.status = 403;
             return next(err);
     }
     else{
-        if(req.session.user === 'authenticated'){
-            next();
-        }
-        else{
-            let err = new Error('You are not authenticated');
-            
-            err.status = 403;
-            return next(err);
-        }
+        next();
     }
 
     
