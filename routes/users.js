@@ -27,7 +27,8 @@ router.post("/signup", (req,res,next)=>{
         }
     })
     .then((user)=>{
-        next();
+        res.setHeader("Content-Type", "application/json");
+        res.status(200).end('This connection is successful');
     })
     .catch((err)=>{
         next(err);
@@ -50,7 +51,7 @@ router.post('/login', (req,res,next)=>{
         let username = auth[0];
         let password = auth[1];
 
-        User.find({username: username})
+        User.findOne({username: username})
         .then((user)=>{
             if(user === null){
                 let err = new Error('User ' + username + ' does not exist');
