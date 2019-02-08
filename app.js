@@ -11,10 +11,11 @@ import indexRouter from "./routes/index"
 import campgroundRouter from "./routes/campground";
 import usersRouter from "./routes/users1";
 import passport from "passport";
-import authenticate from "./authenticate";
+import auth from "./authenticate";
+import config from "./config";
 //import Seed from "./seeds";
 
-mongoose.connect("mongodb://localhost/belpcamp", {useNewUrlParser: true}, ()=>{
+mongoose.connect(config.mongoUrl, {useNewUrlParser: true, useCreateIndex: true}, ()=>{
     console.log("Database Connected Successfully");
 });
 //Seed();
@@ -28,34 +29,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 //app.use(cookieParser("12345-67890-09876-54321"));
 
-app.use(session({
-    name: 'session-id',
-    secret: "12345-67890-09876-54321",
-    saveUninitialized: false,
-    resave: false,
-    store: new FileStore()
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(auth.initialize());
 
 app.use(indexRouter);
 app.use('/users', usersRouter);
-
-function auth(req,res,next){
-    if(!req.user){
-            let err = new Error('You are not authenticated');
-            err.status = 403;
-            return next(err);
-    }
-    else{
-        next();
-    }
-
-    
-}
-
-app.use(auth);
 
 app.use(express.static(path.join(__dirname, "/public")));
 
